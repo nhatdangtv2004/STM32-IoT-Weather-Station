@@ -1,0 +1,53 @@
+# =========================
+# ESP32 / PlatformIO
+# =========================
+ESP32/**/.pio/
+ESP32/**/.vscode/
+ESP32/**/.cache/
+
+# Local Node.js installation
+ESP32/New folder/
+
+# =========================
+# STM32 / Keil
+# =========================
+STM32/**/Objects/
+STM32/**/Listings/
+STM32/**/*.axf
+STM32/**/*.hex
+STM32/**/*.bin
+STM32/**/*.map
+STM32/**/*.o
+STM32/**/*.d
+STM32/**/*.crf
+STM32/**/*.lnp
+STM32/**/*.dep
+
+# Keil generated / user files
+STM32/**/*.uvguix.*
+STM32/**/*.uvoptx
+STM32/**/*.build_log.htm
+STM32/**/*.htm
+STM32/**/*.sct
+STM32/MDK-ARM/WeatherStation/
+STM32/MDK-ARM/a
+
+# =========================
+# Video hosted on YouTube
+# =========================
+*.mp4
+
+# =========================
+# Windows
+# =========================
+Thumbs.db
+Desktop.ini
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.bak
+*.log
+~$*.docx
+~$*.pptx

@@ -1,0 +1,611 @@
+[
+    {
+        "id": "d11bc1453693c121",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "21e074e1be0fe7bd",
+        "type": "mqtt in",
+        "z": "d11bc1453693c121",
+        "name": "Weather MQTT",
+        "topic": "hcmute/weatherstation/weather-C022C8D8CBB0/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "69162e5838d21596",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 380,
+        "y": 460,
+        "wires": [
+            [
+                "343d1e8ee4531dcd"
+            ]
+        ]
+    },
+    {
+        "id": "e2d3106b1330d6d5",
+        "type": "ui-chart",
+        "z": "d11bc1453693c121",
+        "group": "33f30d18ac0838d1",
+        "name": "Temperature History",
+        "label": "Temperature History",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "12",
+        "height": "6",
+        "className": "",
+        "interpolation": "linear",
+        "x": 820,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "343d1e8ee4531dcd",
+        "type": "switch",
+        "z": "d11bc1453693c121",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "hcmute/weatherstation/weather-C022C8D8CBB0/temperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "hcmute/weatherstation/weather-C022C8D8CBB0/humidity",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "hcmute/weatherstation/weather-C022C8D8CBB0/pressure",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "hcmute/weatherstation/weather-C022C8D8CBB0/light",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "hcmute/weatherstation/weather-C022C8D8CBB0/rain/raw",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "hcmute/weatherstation/weather-C022C8D8CBB0/rain/state",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "hcmute/weatherstation/weather-C022C8D8CBB0/status",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 550,
+        "y": 460,
+        "wires": [
+            [
+                "814bee5512dc5309",
+                "e2d3106b1330d6d5"
+            ],
+            [
+                "c2f3abbc731f57f8"
+            ],
+            [
+                "ed43d77a705e1cbc"
+            ],
+            [
+                "9dc02abee5f65559"
+            ],
+            [
+                "29fcf57765e9be7e"
+            ],
+            [
+                "a2ce18532cdb614b"
+            ],
+            [
+                "ab65592a0f7c5c58"
+            ]
+        ]
+    },
+    {
+        "id": "ab65592a0f7c5c58",
+        "type": "ui-text",
+        "z": "d11bc1453693c121",
+        "group": "d4c96e17edaff036",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Device Status",
+        "label": "Device Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 800,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a2ce18532cdb614b",
+        "type": "ui-text",
+        "z": "d11bc1453693c121",
+        "group": "d4c96e17edaff036",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Rain State",
+        "label": "Rain State",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 790,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "814bee5512dc5309",
+        "type": "ui-gauge",
+        "z": "d11bc1453693c121",
+        "name": "Temperature",
+        "group": "0d47203d471bb28f",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperature",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "30",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "40",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 790,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29fcf57765e9be7e",
+        "type": "ui-text",
+        "z": "d11bc1453693c121",
+        "group": "d4c96e17edaff036",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Rain ADC",
+        "label": "Rain ADC",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 780,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "c2f3abbc731f57f8",
+        "type": "ui-gauge",
+        "z": "d11bc1453693c121",
+        "name": "Humidity",
+        "group": "0d47203d471bb28f",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Humidity",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 780,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed43d77a705e1cbc",
+        "type": "ui-gauge",
+        "z": "d11bc1453693c121",
+        "name": "Pressure",
+        "group": "0d47203d471bb28f",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Pressure",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "hPa",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "950",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1000",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1030",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": "950",
+        "max": "1050",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 780,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9dc02abee5f65559",
+        "type": "ui-gauge",
+        "z": "d11bc1453693c121",
+        "name": "Light",
+        "group": "0d47203d471bb28f",
+        "order": 4,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Light",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "Lux",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "300",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "700",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "1000",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 770,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69162e5838d21596",
+        "type": "mqtt-broker",
+        "name": "HiveMQ Public",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "33f30d18ac0838d1",
+        "type": "ui-group",
+        "name": "History",
+        "page": "fe65cc2cb9aca5e1",
+        "width": "12",
+        "height": "6",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "d4c96e17edaff036",
+        "type": "ui-group",
+        "name": "Weather Status",
+        "page": "fe65cc2cb9aca5e1",
+        "width": "4",
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "0d47203d471bb28f",
+        "type": "ui-group",
+        "name": "Environment",
+        "page": "fe65cc2cb9aca5e1",
+        "width": "12",
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "fe65cc2cb9aca5e1",
+        "type": "ui-page",
+        "name": "Weather Station",
+        "ui": "025d932973ea915f",
+        "path": "/weather",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "c50e920c61b596f2",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "025d932973ea915f",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "c50e920c61b596f2",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#fcfcfd",
+            "primary": "#0d74ce",
+            "bgPage": "#f9f9fb",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d9d9e0"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "57f962099d6e7540",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.32.0"
+        }
+    }
+]
